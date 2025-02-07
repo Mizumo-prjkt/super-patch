@@ -1010,7 +1010,9 @@ function build_normal_cmp {
         mdt "Continuing this"
         mdt "Calling tar to pack"
         #mdt "BTW renaming package feature is coming soon"
-        tar -cvf $LAB/$file_name.tar $LAB/super.img
+        cd $LAB
+        tar -cvf $file_name.tar super.img
+        cd ..
         mdt "Done"
         mdt "Cleaning..."
         rm -rf $LAB/super.img
@@ -1036,7 +1038,9 @@ function build_normal_cmp {
                 mdt "Continuing this"
                 mdt "Calling tar to pack"
                 #mdt "BTW renaming package feature is coming soon"
-                tar -cvf $LAB/$file_name.tar super.img $LOCATION_RECOVERY
+                cd $LAB
+                tar -cvf $file_name.tar super.img $LOCATION_RECOVERY
+                cd ..
                 mdt "Done"
                 mdt "Cleaning..."
                 rm -rf $LAB/super.img
