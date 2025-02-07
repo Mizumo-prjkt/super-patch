@@ -619,15 +619,18 @@ function extract_super_img {
                             mdt "Removing Super.img since we have super_raw"
                             rm -rf $LAB/super.img
                             mdt "Super.img removed"
-                            mdt "Dumping super_raw.img"
-                            lpdump $LAB/super_raw.img > $TMP/super_map.txt
+                            mdt "NOTE: As per new weird things about A13, super_raw will be renamed to super.img"
+                            mv $LAB/super_raw.img $LAB/super.img
+                            mdt "DONE"
+                            mdt "Dumping super.img"
+                            lpdump $LAB/super.img > $TMP/super_map.txt
                             mdt "Dumping Done"
                             mdt "Calling printf to do something..."
                             printf "$(<$TMP/super_map.txt)" | grep -e "Size:" | awk '{print $2}' > $TMP/super_size.txt
                             printf "$(<$TMP/super_map.txt)" | grep -e "Maximum size:" | awk '{print $3}' | sed '2!d' > $TMP/super_main.txt
                             mdt "printf process done"
                             mdt "Packing"
-                            lpunpack $LAB/super_raw.img $LAB/
+                            lpunpack $LAB/super.img $LAB/
                             gsi_picker
                         fi
                     else 
